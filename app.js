@@ -1,14 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const grid = document.querySelector('.grid');
+  const minigrid = document.querySelector('.mini-grid');
   const scoreDisplay = document.querySelector('#score');
-  const displaySquares = document.querySelectorAll('.mini-grid div')
   const startBtn = document.querySelector('#start-button');
-  let squares = Array.from(document.querySelectorAll('.grid div'));
+
   const width = 10;
   let nextRandom = 0;
   let score = 0;
-  let timerId 
+  let timerId;
+
+  /**
+   * Add subelements to element
+   * @param {Element} parentElement Element to add children to
+   * @param {Integer} count         Amount of child elements to add
+   * @param {Element} childToClone  Child element to clone
+   */
+  function addChildrenClones(parentElement, count, childToClone) {
+    for (i = 0; i < count; i++)
+      parentElement.appendChild(childToClone.cloneNode(true));
+  }
+
+  gridElement = document.createElement("div");
+  takenElement = document.createElement("div");
+  takenElement.classList.add('taken');
+  addChildrenClones(grid, 200, gridElement);
+  addChildrenClones(grid, 10, takenElement);
+  addChildrenClones(minigrid, 16, gridElement);
+
+  const displaySquares = document.querySelectorAll('.mini-grid div')
+  let squares = Array.from(document.querySelectorAll('.grid div'));
 
   const lTetromino = [
     [1, width+1, width*2+1, 2],
