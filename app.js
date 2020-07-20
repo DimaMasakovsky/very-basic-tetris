@@ -10,6 +10,32 @@ document.addEventListener('DOMContentLoaded', () => {
   let score = 0;
   let timerId;
 
+  /*
+    User greeting! 
+  */
+  const usernameSpan = document.querySelector('#username');
+  const changeUsernameBtn = document.querySelector('#changeUsername'); 
+  let username = ""; 
+
+  function changeUsername() { 
+    let username = prompt("Hi! What's your name?", "Stranger");
+    localStorage.setItem("username", username); 
+    usernameSpan.innerHTML = localStorage.getItem("username");  
+  }
+
+  if (!localStorage.getItem("username")) {
+    changeUsername();  
+  } else { 
+    usernameSpan.innerHTML = localStorage.getItem("username");  
+  }
+   
+  changeUsernameBtn.addEventListener('click', () => { 
+    changeUsername();    
+  });
+
+ 
+ 
+
   /**
    * Add subelements to element
    * @param {Element} parentElement Element to add children to
